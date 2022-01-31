@@ -1,0 +1,72 @@
+//
+#include <iostream>
+using namespace std;
+
+class details
+{
+    public:
+    
+    long int Balance;
+    char Type;
+    long int Pin;
+    details(int pin, char type, long int balance)
+    {
+        Balance= balance;
+        Type= type;
+        Pin = pin;
+    }
+    
+};
+
+bool login(details obj)
+{
+    long int pin;
+    cout<<"Enter pin";
+    cin>>pin;
+    if (obj.Pin == pin)
+        return true;
+    else 
+        return false;
+}
+
+char menu()
+{
+    char input;
+    cout<<"A for Deposit\nB for Withdrawl\nEnter :    ";
+    cin>>input;
+    
+    return input;   
+}
+
+void deposit(details obj)
+{
+    long int amount;
+    cout<<"Enter amount you want to deposit: ";
+    cin>>amount;
+    if(obj.Type=='S')
+    {
+        if(amount+obj.Balance > 10000)
+        {
+            cout<<"Deposit FAiled";
+        }
+        else
+        {
+            obj.Balance = obj.Balance + amount;
+        }
+    }
+}
+
+int main()
+{
+    details s1(1234, 'S', 3000);
+    
+    if(login(s1)== true)
+    {
+        if (menu()== 'A')
+        {
+            deposit(s1);
+            cout<<s1.Balance;
+        }
+    }
+    
+}
